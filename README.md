@@ -25,7 +25,8 @@ A Flask-based REST API for event planning and management. Users can create event
 - **SQLAlchemy-Serializer**: Model serialization
 - **SQLite**: Database (development)
 
-## Setup Instructions
+## Setup Instructions (Backend/server)
+ 
 
 1. **Install dependencies**:
    ```bash
@@ -37,16 +38,22 @@ A Flask-based REST API for event planning and management. Users can create event
    pipenv shell
    ```
 
-3. **Run the application**:
+3. **Initialize the database and make migrations**:
    ```bash
    cd server
-   python app.py
-   ```
+   flask db init
+   flask db upgrade head
 
 4. **Seed the database** (optional):
    ```bash
    python seed.py
    ```
+
+5. **Run the application**:
+   ```bash
+   python app.py
+   ```
+
 
 The API will be available at `http://localhost:5555`
 

@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "event-planning-api-collection",
+		"name": "Event Planning API",
+		"description": "A comprehensive collection for the Event Planning API with CRUD operations for Users, Events, and Vendors.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Get API information and available endpoints"
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Retrieve all users in the system (requires authentication)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Retrieve a specific user by their ID (requires authentication)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"attendee\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						},
+						"description": "Register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"updateduser\",\n  \"email\": \"updated@example.com\",\n  \"role\": \"organizer\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Update an existing user's information (requires authentication)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "Delete a user from the system (requires organizer role)"
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"john_organizer\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Authenticate a user with username and password"
+					},
+					"response": []
+				},
+
+				{
+					"name": "Get Current User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						},
+						"description": "Get the current logged-in user's profile (requires authentication)"
+					},
+					"response": []
+				}
+			],
+			"description": "User management endpoints"
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						},
+						"description": "Retrieve all events in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						},
+						"description": "Retrieve a specific event by its ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tech Meetup 2024\",\n  \"description\": \"A networking event for tech professionals\",\n  \"location\": \"Tech Hub Downtown\",\n  \"datetime\": \"2024-12-15T18:00:00\",\n  \"capacity\": 100,\n  \"ticket_price\": 25.0\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								""
+							]
+						},
+						"description": "Create a new event (requires organizer role)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Tech Meetup 2024\",\n  \"description\": \"Updated description\",\n  \"capacity\": 150,\n  \"ticket_price\": 30.0\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						},
+						"description": "Update an existing event (requires authentication, only organizer can update their own events)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1"
+							]
+						},
+						"description": "Delete an event from the system (requires authentication, only organizer can delete their own events)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event Attendees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/1/attendees",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1",
+								"attendees"
+							]
+						},
+						"description": "Get all attendees for a specific event"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Attendee to Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 2,\n  \"rsvp_status\": \"confirmed\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/1/attendees",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1",
+								"attendees"
+							]
+						},
+						"description": "Add a user as an attendee to an event (requires authentication)"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Attendee from Event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/events/1/attendees/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1",
+								"attendees",
+								"2"
+							]
+						},
+						"description": "Remove an attendee from an event (requires authentication)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event Vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/1/vendors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1",
+								"vendors"
+							]
+						},
+						"description": "Get all vendors assigned to a specific event"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Vendor to Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"vendor_id\": 1,\n  \"contract_details\": \"Catering contract for 100 people\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/events/1/vendors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"1",
+								"vendors"
+							]
+						},
+						"description": "Assign a vendor to an event (requires organizer role, only for events you organized)"
+					},
+					"response": []
+				}
+			],
+			"description": "Event management endpoints"
+		},
+		{
+			"name": "Vendors",
+			"item": [
+				{
+					"name": "Get All Vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vendors/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								""
+							]
+						},
+						"description": "Retrieve all vendors in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vendor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vendors/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								"1"
+							]
+						},
+						"description": "Retrieve a specific vendor by their ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Vendor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Premium Catering Services\",\n  \"service_type\": \"caterer\",\n  \"contact_info\": \"Phone: (555) 987-6543, Email: info@premiumcatering.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/vendors/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								""
+							]
+						},
+						"description": "Create a new vendor (requires organizer role)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vendor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Premium Catering\",\n  \"contact_info\": \"Phone: (555) 987-6544, Email: contact@premiumcatering.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/vendors/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								"1"
+							]
+						},
+						"description": "Update an existing vendor (requires organizer role)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vendor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/vendors/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								"1"
+							]
+						},
+						"description": "Delete a vendor from the system (requires organizer role)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vendors by Service Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/vendors/service/caterer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"vendors",
+								"service",
+								"caterer"
+							]
+						},
+						"description": "Get all vendors of a specific service type"
+					},
+					"response": []
+				}
+			],
+			"description": "Vendor management endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5555",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
